@@ -4,7 +4,7 @@
     <PreferenceCategory app:title="Reciever">
 
         <EditTextPreference
-            android:key="edit_text_preference_1"
+            android:key="serverip"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Server IP" />
