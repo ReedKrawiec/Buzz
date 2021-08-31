@@ -12,16 +12,19 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.SeekBar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import java.io.File
 import java.net.URL
 import kotlin.concurrent.thread
+import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.TextView
+import org.w3c.dom.Text
+import java.lang.Math.floor
 
-
-
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnSeekBarChangeListener{
     private var isListening: Boolean = false
     private var recorder: MediaRecorder? = null
     private var handler: Handler = Handler()
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private var time = 0.0
     private var last_notif_time = 0.0
     private var temp_path: String? = null
+    private var tolerance: Int = 200
     private fun startRecorder() {
 
         Log.d("TAG","YEP")
@@ -81,6 +85,10 @@ class MainActivity : AppCompatActivity() {
             startRecorder()
         }
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val ThresholdSeek = findViewById<SeekBar>(R.id.seekBar2)
+        val AverageLevel = findViewById<TextView>(R.id.AverageLevel)
+        val CurrentLevel = findViewById<TextView>(R.id.CurrentLevel)
+        ThresholdSeek.setOnSeekBarChangeListener(this)
         val button = findViewById<Button>(R.id.ListenButton)
         button.setOnClickListener {
               if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
@@ -96,7 +104,9 @@ class MainActivity : AppCompatActivity() {
                                 val amp = recorder!!.maxAmplitude
                                 total += amp
                                 time += 1
-                                if(amp > ((total / time) + 200) && (last_notif_time == 0.0 || (time -  last_notif_time) > 300)){
+                                CurrentLevel.text = "Current Sound Level: " + amp.toString()
+                                AverageLevel.text = "Average Sound Level: " + floor(total/time).toString()
+                                if(amp > ((total / time) + tolerance) && (last_notif_time == 0.0 || (time -  last_notif_time) > 300)){
                                     thread(start = true) {
                                         last_notif_time = time
 
@@ -146,5 +156,20 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+        tolerance = (200 + (p1/100.0) * 32000).toInt()
+        Log.d("TAG", "$tolerance $p1")
+        val tol_text = findViewById<TextView>(R.id.textView3)
+        tol_text.text = "Tolerance Level: " + tolerance
+    }
+
+    override fun onStartTrackingTouch(p0: SeekBar?) {
+        Log.d("TAG","start")
+    }
+
+    override fun onStopTrackingTouch(p0: SeekBar?) {
+        Log.d("TAG","end")
     }
 }
