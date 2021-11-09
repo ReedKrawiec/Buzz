@@ -6,14 +6,18 @@ function generateCode(){
   return Array.from(new Array(6)).map(() => characters[Math.floor(Math.random() * characters.length)]).join("");
 }
 
-Notification.requestPermission(function(status) {
-  console.log('Notification permission status:', status);
-});
-
 const socket = io();
 
 socket.on('message', function (message) {
-  console.log(message);
+  if(message == "alert"){
+    Notification.requestPermission(function(status) {
+      if(Notification.permission == 'granted'){
+        var notification = new Notification("Alert!",{
+          icon:"./logo192.png"
+        });
+      }
+    });
+  }
 });
 
 const App = () => {
