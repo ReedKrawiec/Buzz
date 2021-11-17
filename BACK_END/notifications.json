@@ -1,0 +1,16 @@
+[
+  {
+    "icon":"file://C:/Users/ReedK_000/me.png",
+    "summary":"Buzz Notification",
+    "body":"",
+    "appName":"Buzz",
+    "name":"buzz"
+  },
+  {
+    "icon":"fileEntry",
+    "summary":"textEntry",
+    "body":"",
+    "appName":"Buzz",
+    "name":"fuzz"
+  }
+]

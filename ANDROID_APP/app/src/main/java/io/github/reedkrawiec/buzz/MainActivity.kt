@@ -74,6 +74,12 @@ class MainActivity : AppCompatActivity(), OnSeekBarChangeListener{
         startRecorder()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        if(intent.getStringExtra("code") != null){
+            Log.d("Tag",intent.getStringExtra("code")!!);
+        }
+        else {
+            Log.d("Tag","no string extra");
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -111,10 +117,11 @@ class MainActivity : AppCompatActivity(), OnSeekBarChangeListener{
                                         last_notif_time = time
 
                                         val ip = prefs.getString("serverip","default")
+                                        Log.d("TAG","hello executing")
                                         if(ip != null){
-                                            Log.d("TAG", ip)
+                                            Log.d("TAG", (ip + "/" + intent.getStringExtra("code")!!))
                                             //"http://6ddc59dd55b2.ngrok.io/"
-                                            val url = URL(ip).readText()
+                                            val url = URL(ip + "/" + intent.getStringExtra("code")!!).readText()
                                         }
 
                                     }
