@@ -14,7 +14,7 @@ class CodeInput : BaseActivity() {
         val button = findViewById<Button>(R.id.enterCodeButton);
         val input = findViewById<EditText>(R.id.codeInput);
         button.setOnClickListener{
-            val codeInput = Intent(this, MainActivity::class.java)
+            val codeInput = Intent(this, TimerActivity::class.java)
             Log.d("TAG",input.text.toString());
             codeInput.putExtra("code",input.text.toString())
             startActivity(codeInput)
