@@ -21,49 +21,150 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/codeInput"
-            android:layout_width="316dp"
-            android:layout_height="72dp"
-            android:background="@null"
-            android:ems="10"
-            android:fontFamily="@font/roboto_slab"
-            android:inputType="textPersonName"
-            android:letterSpacing="1.2"
-            android:text="Namern"
-            android:textAlignment="textStart"
-            android:textAllCaps="true"
-            android:textColor="#ffffff"
-            android:textSize="28sp"
-            app:boxBackgroundMode="none"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.33" />
-
         <Button
             android:id="@+id/enterCodeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
             android:background="@drawable/button"
             android:fontFamily="@font/roboto_slab_bold"
-            android:paddingLeft="30sp"
-            android:paddingTop="15sp"
-            android:paddingRight="30sp"
+            android:paddingLeft="40dp"
+            android:paddingTop="15dp"
+            android:paddingRight="40dp"
             android:paddingBottom="15sp"
-            android:text="Enter Code"
+            android:text="Submit"
             android:textAllCaps="false"
             android:textColor="#323238"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/codeInput"
-            app:layout_constraintVertical_bias="0.498" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="120dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/enterCodeButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/codeInput"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto_mono"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:letterSpacing="1.4"
+                    android:maxLength="6"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="true"
+                    android:textColor="#ffffff"
+                    android:textSize="28sp"
+                    app:boxBackgroundMode="none"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:id="@+id/underline1"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:id="@+id/underline2"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+
+                    <ImageView
+                        android:id="@+id/underline3"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+
+                    <ImageView
+                        android:id="@+id/underline4"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:id="@+id/underline5"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+
+                    <ImageView
+                        android:id="@+id/underline6"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
