@@ -7,22 +7,41 @@
     tools:context=".BaseActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"
         android:background="#323238">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/roboto_slab"
-            android:gravity="end"
-            android:text="Buzz"
-            android:textColor="#EBCD8F"
-            android:textSize="30sp" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:fontFamily="@font/roboto_slab"
+        android:gravity="end"
+        android:text="Buzz"
+        android:textColor="#EBCD8F"
+        android:textSize="30sp"
+        app:layout_anchor="@+id/linearLayout2"
+        app:layout_anchorGravity="end|top" />
+
+    <ImageView
+        android:id="@+id/buzz_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        app:layout_anchor="@+id/linearLayout2"
+        app:layout_anchorGravity="start|top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078"
+        app:srcCompat="@drawable/ic_group_5" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
