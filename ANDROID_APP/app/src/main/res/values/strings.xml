@@ -16,4 +16,8 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="tolerance_help">Sound threshold for sending a desktop alert.
+The red section of the bar represents the current sound level! Use the circle to set the threshold above the ambient sound level!</string>
+    <string name="code_help">Code to connect / send notifications to the website. Open https://dev.reed.codes/buzz on the device that you\'d like to recieve notifications on!</string>
 </resources>

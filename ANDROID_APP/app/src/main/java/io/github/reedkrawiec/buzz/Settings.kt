@@ -21,11 +21,24 @@ class Settings : AppCompatActivity() {
                 .commit()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home){
+    }/*
             val home = Intent(this, MainActivity::class.java)
             startActivity(home)
+             */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home){
+            val from = intent.getStringExtra("from")
+            if(from.equals("LandingPage")) {
+                val settings = Intent(this, LandingPage::class.java)
+                startActivity(settings)
+            } else if (from.equals("CodeInput")){
+                val codeInput = Intent(this, CodeInput::class.java)
+                startActivity(codeInput)
+            } else if (from.equals("TimerActivity")){
+                val timer = Intent(this,TimerActivity::class.java)
+                timer.putExtra("code",intent.getStringExtra("code"))
+                startActivity(timer)
+            }
             return true;
         }
         return super.onOptionsItemSelected(item)

@@ -18,7 +18,7 @@ import java.io.File
 import java.net.URL
 import kotlin.concurrent.thread
 
-class TimerActivity : AppCompatActivity(), OnSeekBarChangeListener {
+class TimerActivity : BaseActivity(), OnSeekBarChangeListener {
     private var recorder: MediaRecorder? = null
     private var temp_path: String? = null
     private var handler: Handler = Handler()
@@ -63,12 +63,13 @@ class TimerActivity : AppCompatActivity(), OnSeekBarChangeListener {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Log.d("TAG", grantResults.toString())
         startRecorder()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
+        val code = intent.getStringExtra("code")!!
+        registerSettingsButton("TimerActivity",code)
         if (ContextCompat.checkSelfPermission(
                 this,
                 android.Manifest.permission.RECORD_AUDIO
@@ -86,12 +87,16 @@ class TimerActivity : AppCompatActivity(), OnSeekBarChangeListener {
         ) {
             startRecorder()
         }
+        val toleranceElement = findViewById<TextView>(R.id.tolerance)
+        toleranceElement.setOnClickListener{
+            dialog("Help:",resources.getString(R.string.tolerance_help))
+        }
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val ThresholdSeek = findViewById<SeekBar>(R.id.seekBar)
         ThresholdSeek.setOnSeekBarChangeListener(this)
         val button = findViewById<Button>(R.id.centerButton)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        val ip = "http://dev.reed.codes:8000"
+        val ip = prefs.getString("serverip","default")
         Thread {
             URL(ip + "/pair/" + intent.getStringExtra("code")!!).readText()
         }.start()
@@ -113,7 +118,7 @@ class TimerActivity : AppCompatActivity(), OnSeekBarChangeListener {
                                 if(amp > ((total / time) + tolerance) && (last_notif_time == 0.0 || (time -  last_notif_time) > 300)){
                                     thread(start = true) {
                                         last_notif_time = time
-                                        val url = URL(ip + "/alert/" + intent.getStringExtra("code")!!).readText()
+                                        val url = URL(ip + "/alert/" + code).readText()
                                     }
 
                                 }

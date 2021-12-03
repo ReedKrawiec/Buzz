@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 
 class CodeInput : BaseActivity() {
     private var isListening: Boolean = false
@@ -17,11 +18,15 @@ class CodeInput : BaseActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code_input)
-        val button = findViewById<Button>(R.id.enterCodeButton);
-        val input = findViewById<EditText>(R.id.codeInput);
+        registerSettingsButton("CodeInput","")
+        val button = findViewById<Button>(R.id.enterCodeButton)
+        val input = findViewById<EditText>(R.id.codeInput)
+        val codeHelp = findViewById<TextView>(R.id.codeHelp)
+        codeHelp.setOnClickListener{
+            dialog("help:",resources.getString(R.string.code_help))
+        }
         button.setOnClickListener{
             val codeInput = Intent(this, TimerActivity::class.java)
-            Log.d("TAG",input.text.toString());
             codeInput.putExtra("code",input.text.toString())
             startActivity(codeInput)
         }
