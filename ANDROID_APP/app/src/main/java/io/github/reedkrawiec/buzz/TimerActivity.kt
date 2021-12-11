@@ -6,37 +6,38 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import android.widget.SeekBar.OnSeekBarChangeListener
+import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.net.URL
 import kotlin.concurrent.thread
+
+val MAX_AMP = 24_000.0
 
 class TimerActivity : BaseActivity(), OnSeekBarChangeListener {
     private var recorder: MediaRecorder? = null
     private var temp_path: String? = null
     private var handler: Handler = Handler()
-    private var tolerance = 0
+    private var tolerancePercentage = 0.5
     private var isListening = false
     private var total = 0.0
     private var time = 0.0
     private var last_notif_time = 0.0
+    private lateinit var outputFile: File;
     private fun startRecorder() {
         val _recorder = MediaRecorder()
         _recorder.setAudioSource(MediaRecorder.AudioSource.MIC)
         _recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         _recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         val files = getExternalMediaDirs()
-        temp_path = files[0].absolutePath + "/test2.3gp"
-        if(File(temp_path).exists()){
-            File(temp_path).delete()
-        }
+        // We need to pipe the data for the recorder somewhere, and /dev/null isn't accepted
+        // as an output anymore, so we pipe the output to a temp file that we periodically
+        temp_path = files[0].absolutePath + "/trash.3gp"
+        outputFile = File(temp_path)
         _recorder.setOutputFile(temp_path)
         try {
             _recorder.prepare()
@@ -87,6 +88,7 @@ class TimerActivity : BaseActivity(), OnSeekBarChangeListener {
         ) {
             startRecorder()
         }
+
         val toleranceElement = findViewById<TextView>(R.id.tolerance)
         toleranceElement.setOnClickListener{
             dialog("Help:",resources.getString(R.string.tolerance_help))
@@ -94,33 +96,37 @@ class TimerActivity : BaseActivity(), OnSeekBarChangeListener {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val ThresholdSeek = findViewById<SeekBar>(R.id.seekBar)
         ThresholdSeek.setOnSeekBarChangeListener(this)
+
         val button = findViewById<Button>(R.id.centerButton)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        val ip = prefs.getString("serverip","default")
-        Thread {
-            URL(ip + "/pair/" + intent.getStringExtra("code")!!).readText()
-        }.start()
+        val ip = prefs.getString("serverip","https://buzz.reed.codes")
+
         button.setOnClickListener {
             if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
                 isListening = !isListening
                 if(isListening) {
                     button.text = "Listening\nfor alert!"
-                    total = 0.0
                     time = 0.0
                     last_notif_time = 0.0
                     val _thread = object: Runnable {
                         override fun run() {
                             if(isListening && recorder != null){
                                 val amp = recorder!!.maxAmplitude
-                                progressBar.progress = ((amp/36000.0) * 100).toInt()
-                                total += amp
+                                outputFile.writeText("")
+                                val percentage = (amp/MAX_AMP)
+                                progressBar.progress = (percentage * 100).toInt()
                                 time += 1
-                                if(amp > ((total / time) + tolerance) && (last_notif_time == 0.0 || (time -  last_notif_time) > 300)){
+                                if(amp/MAX_AMP > tolerancePercentage && (last_notif_time == 0.0 || (time -  last_notif_time) > 300)){
                                     thread(start = true) {
                                         last_notif_time = time
-                                        val url = URL(ip + "/alert/" + code).readText()
-                                    }
+                                        try{
+                                            URL("$ip/alert/$code").readText()
+                                        } catch(e: Exception) {
+                                            Snackbar.make(findViewById(R.id.centerButton), resources.getString(R.string.alert_failure), Snackbar.LENGTH_INDEFINITE)
+                                                .show()
+                                        }
 
+                                    }
                                 }
                             }
                             handler.postDelayed(this, 100)
@@ -133,9 +139,11 @@ class TimerActivity : BaseActivity(), OnSeekBarChangeListener {
                 }
             }
         }
+
+
     }
     override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-        tolerance = (200 + (p1/100.0) * 32000).toInt()
+        tolerancePercentage = (p1/100.0).toDouble()
     }
 
     override fun onStartTrackingTouch(p0: SeekBar?) {

@@ -24,20 +24,21 @@
         android:id="@+id/constraintLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_100sdp"
         app:layout_anchor="@+id/include2"
         app:layout_anchorGravity="center">
 
         <Button
             android:id="@+id/centerButton"
-            android:layout_width="280dp"
-            android:layout_height="280dp"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_220sdp"
             android:background="@drawable/green_circle"
             android:fontFamily="@font/roboto_slab"
             android:singleLine="false"
             android:text="Click to\nlisten!"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="40sp"
+            android:textSize="@dimen/_30sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,11 +47,11 @@
             android:id="@+id/tolerance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
+            android:paddingTop="@dimen/_28sdp"
+            android:paddingBottom="@dimen/_20sdp"
             android:text="Tolerance (?)"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
+            android:textSize="@dimen/_18sdp"
             app:layout_constraintBottom_toTopOf="@+id/frameLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +60,8 @@
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,8 +69,8 @@
 
             <SeekBar
                 android:id="@+id/seekBar"
-                android:layout_width="280dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/_280sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:progressDrawable="@android:color/transparent"
                 android:thumb="@drawable/seekbar_thumb" />
 
@@ -80,8 +81,8 @@
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="280dp"
-                    android:layout_height="5dp"
+                    android:layout_width="@dimen/_280sdp"
+                    android:layout_height="@dimen/_5sdp"
                     android:max="100"
                     android:progress="50"
                     android:progressDrawable="@drawable/progess_drawable"

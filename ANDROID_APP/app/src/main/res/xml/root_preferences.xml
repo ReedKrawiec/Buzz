@@ -8,7 +8,7 @@
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Server IP"
-            android:defaultValue="https://dev.reed.codes/buzz"
+            android:defaultValue="https://buzz.reed.codes"
             />
 
     </PreferenceCategory>

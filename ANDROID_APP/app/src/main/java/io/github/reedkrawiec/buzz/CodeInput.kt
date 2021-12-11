@@ -10,6 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.preference.PreferenceManager
+import com.google.android.material.snackbar.Snackbar
+import java.net.URL
 
 class CodeInput : BaseActivity() {
     private var isListening: Boolean = false
@@ -22,13 +25,26 @@ class CodeInput : BaseActivity() {
         val button = findViewById<Button>(R.id.enterCodeButton)
         val input = findViewById<EditText>(R.id.codeInput)
         val codeHelp = findViewById<TextView>(R.id.codeHelp)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         codeHelp.setOnClickListener{
             dialog("help:",resources.getString(R.string.code_help))
         }
         button.setOnClickListener{
-            val codeInput = Intent(this, TimerActivity::class.java)
-            codeInput.putExtra("code",input.text.toString())
-            startActivity(codeInput)
+            val ip = prefs.getString("serverip","https://buzz.reed.codes")
+            Thread {
+                try{
+                    val code = input.text.toString()
+                    URL("$ip/pair/$code").readText()
+                    val codeInput = Intent(this, TimerActivity::class.java)
+                    codeInput.putExtra("code",code)
+                    startActivity(codeInput)
+                } catch(e: Exception) {
+                    Snackbar.make(findViewById(R.id.codeInputConstraint), resources.getString(R.string.pairing_failure), Snackbar.LENGTH_LONG)
+                        .show()
+                }
+
+            }.start()
+
         }
         val underlines = arrayOf(
             findViewById<ImageView>(R.id.underline1),

@@ -32,9 +32,6 @@
             android:name=".Settings"
             android:exported="true"
             android:label="@string/title_activity_settings" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.actions"
