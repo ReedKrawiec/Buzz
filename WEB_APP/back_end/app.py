@@ -8,16 +8,17 @@ app = Flask(__name__,
             static_folder='static')
 
 connections = {}
-
-socketio = SocketIO(app=app,cors_allowed_origins=["https://dev.reed.codes","http://localhost:5000"])
+# Socket.io will reject any connection that doesn't originate from one of the below domains,
+# if you're self-hosting, you may have to add your domain to the list below.
+socketio = SocketIO(app=app,cors_allowed_origins=["https://buzz.reed.codes","http://localhost:8000"])
 
 if __name__ == '__main__':
     socketio.run(app)
 
 @socketio.on('message')
 def handle_message(message):
+    # Register a new connection
     connections[message] = request.sid
-    print(connections)
 
 @app.route("/")
 def index():
