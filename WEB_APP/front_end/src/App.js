@@ -50,7 +50,6 @@ const App = () => {
   const [hasPaired,setPaired] = useState(false)
   useEffect(()=>{
     socket.on('message', function (message) {
-      console.log(message);
       if(message == "alert"){
         Notification.requestPermission(function(status) {
           if(Notification.permission == 'granted'){
