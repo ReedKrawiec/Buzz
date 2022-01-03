@@ -1,9 +1,7 @@
-package io.github.reedkrawiec.buzz
+package codes.reed.dev.buzz
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
@@ -21,10 +19,7 @@ class Settings : AppCompatActivity() {
                 .commit()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }/*
-            val home = Intent(this, MainActivity::class.java)
-            startActivity(home)
-             */
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == android.R.id.home){
             val from = intent.getStringExtra("from")

@@ -6,7 +6,7 @@ plugins {
 android {
     compileSdk 30
     defaultConfig {
-        applicationId "io.github.reedkrawiec.Buzz"
+        applicationId 'codes.reed.dev.buzz'
         minSdk 25
         targetSdk 30
         versionCode 1
@@ -14,7 +14,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         targetSdkVersion 30
-        minSdkVersion 30
+        minSdkVersion 25
     }
 
     buildTypes {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.reedkrawiec.buzz">
+    package="codes.reed.dev.buzz">
 
     <application
         android:allowBackup="true"
@@ -11,16 +11,16 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".TimerActivity"
+            android:name="codes.reed.dev.buzz.TimerActivity"
             android:exported="true" />
         <activity
-            android:name=".CodeInput"
+            android:name="codes.reed.dev.buzz.CodeInput"
             android:exported="true"></activity>
         <activity
-            android:name=".BaseActivity"
+            android:name="codes.reed.dev.buzz.BaseActivity"
             android:exported="true" />
         <activity
-            android:name=".LandingPage"
+            android:name="codes.reed.dev.buzz.LandingPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Settings"
+            android:name="codes.reed.dev.buzz.Settings"
             android:exported="true"
             android:label="@string/title_activity_settings" />
 
@@ -40,11 +40,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 </manifest>

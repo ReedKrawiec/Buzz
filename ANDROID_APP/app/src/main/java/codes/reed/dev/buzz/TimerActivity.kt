@@ -1,16 +1,16 @@
-package io.github.reedkrawiec.buzz
+package codes.reed.dev.buzz
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import android.widget.SeekBar.OnSeekBarChangeListener
+import androidx.activity.OnBackPressedCallback
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.net.URL
@@ -65,6 +65,11 @@ class TimerActivity : BaseActivity(), OnSeekBarChangeListener {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         startRecorder()
+    }
+    override fun onBackPressed() {
+        val codeInput = Intent(this, CodeInput::class.java)
+        codeInput.putExtra("code",intent.getStringExtra("code"))
+        startActivity(codeInput)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

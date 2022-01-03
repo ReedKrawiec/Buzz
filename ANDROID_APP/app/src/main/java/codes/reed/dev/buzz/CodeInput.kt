@@ -1,11 +1,12 @@
-package io.github.reedkrawiec.buzz
+package codes.reed.dev.buzz
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -34,10 +35,17 @@ class CodeInput : BaseActivity() {
             Thread {
                 try{
                     val code = input.text.toString()
-                    URL("$ip/pair/$code").readText()
-                    val codeInput = Intent(this, TimerActivity::class.java)
-                    codeInput.putExtra("code",code)
-                    startActivity(codeInput)
+                    if(code.isEmpty() || code.length < 6){
+                        Snackbar.make(findViewById(R.id.codeInputConstraint), resources.getString(R.string.unfilled_code), Snackbar.LENGTH_LONG)
+                            .show()
+                    }
+                    else {
+                        URL("$ip/pair/$code").readText()
+                        val codeInput = Intent(this, TimerActivity::class.java)
+                        codeInput.putExtra("code",code)
+                        startActivity(codeInput)
+                    }
+
                 } catch(e: Exception) {
                     Snackbar.make(findViewById(R.id.codeInputConstraint), resources.getString(R.string.pairing_failure), Snackbar.LENGTH_LONG)
                         .show()
@@ -54,9 +62,18 @@ class CodeInput : BaseActivity() {
             findViewById<ImageView>(R.id.underline5),
             findViewById<ImageView>(R.id.underline6)
         )
+        input.setOnEditorActionListener { p0, p1, p2 -> false }
         input.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {}
+            override fun afterTextChanged(s: Editable) {
+                val regex = "[a-z0-9]".toRegex()
+                val seq = s.filter {
+                    regex.matches(it.toString())
+                }
+                if(seq.toString() != s.toString()) {
+                    s.replace(0,s.length,seq)
+                }
+            }
 
             override fun beforeTextChanged(s: CharSequence, start: Int,
                                            count: Int, after: Int) {

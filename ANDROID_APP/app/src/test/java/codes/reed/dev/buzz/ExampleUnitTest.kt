@@ -1,4 +1,4 @@
-package io.github.reedkrawiec.buzz
+package codes.reed.dev.buzz
 
 import org.junit.Test
 

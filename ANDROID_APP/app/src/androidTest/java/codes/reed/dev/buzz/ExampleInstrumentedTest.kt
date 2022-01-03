@@ -1,4 +1,4 @@
-package io.github.reedkrawiec.buzz
+package codes.reed.dev.buzz
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

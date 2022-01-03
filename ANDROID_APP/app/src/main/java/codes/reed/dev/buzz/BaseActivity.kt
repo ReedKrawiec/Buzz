@@ -1,10 +1,9 @@
-package io.github.reedkrawiec.buzz
+package codes.reed.dev.buzz
 
 import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 
 open class BaseActivity : AppCompatActivity() {
