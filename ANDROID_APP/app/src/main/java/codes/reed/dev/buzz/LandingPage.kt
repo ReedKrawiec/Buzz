@@ -10,6 +10,7 @@ class LandingPage : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
         registerSettingsButton("LandingPage","")
+
         val button = findViewById<Button>(R.id.landingPageButton)
 
         button.setOnClickListener {

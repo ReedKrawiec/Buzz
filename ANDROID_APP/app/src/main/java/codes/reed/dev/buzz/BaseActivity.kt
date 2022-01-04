@@ -11,6 +11,9 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
     }
+    // Helper Method to enable the hamburger button
+    // to route to the settings page, and allow for the
+    // user to return to their original page after the settings page.
     fun registerSettingsButton(from:String, code:String) {
         val button_hamburger = findViewById<Button>(R.id.hamburger)
         button_hamburger.setOnClickListener{
