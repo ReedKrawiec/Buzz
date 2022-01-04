@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/reedkrawiec/Buzz/main/docs/Banner.png" />
+  <img src="https://raw.githubusercontent.com/ReedKrawiec/Buzz/main/docs/Banner.png" />
 </div>
 
 # About
