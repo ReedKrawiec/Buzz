@@ -1,0 +1,40 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9CBD5E"
+    tools:context=".BaseActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_9sdp"
+        android:background="#323238">
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:fontFamily="@font/roboto_slab"
+        android:gravity="end"
+        android:text="Buzz"
+        android:textColor="#EBCD8F"
+        android:textSize="@dimen/_30sdp"
+        app:layout_anchor="@+id/linearLayout2"
+        app:layout_anchorGravity="end|top" />
+
+    <Button
+        android:id="@+id/hamburger"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:background="@drawable/ic_group_5" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

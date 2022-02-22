@@ -1,6 +1,5 @@
 WEB_APP/back_end/static/*
 WEB_APP/back_end/env/*
 WEB_APP/front_end/build/*
-BACK_END/
 ANDROID_APP/app/build/*
 ngrok.exe

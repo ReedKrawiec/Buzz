@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CodeInput">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/activity_base"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/codeInputConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/enterCodeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_240sdp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/roboto_slab_bold"
+            android:paddingLeft="@dimen/_40sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingRight="@dimen/_40sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="#323238"
+            android:textSize="@dimen/_30sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/codeHelp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_slab"
+            android:text="help (?)"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_18sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_120sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/enterCodeButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/codeInput"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto_mono"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:letterSpacing="1.08"
+                    android:maxLength="6"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="true"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_28sdp"
+                    app:boxBackgroundMode="none"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_6sdp">
+
+                    <ImageView
+                        android:id="@+id/underline1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_3sdp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_6sdp">
+
+                    <ImageView
+                        android:id="@+id/underline2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_3sdp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_6sdp">
+
+                    <ImageView
+                        android:id="@+id/underline3"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_3sdp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_6sdp">
+
+                    <ImageView
+                        android:id="@+id/underline4"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_3sdp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_6sdp">
+
+                    <ImageView
+                        android:id="@+id/underline5"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_3sdp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_6sdp">
+
+                    <ImageView
+                        android:id="@+id/underline6"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_3sdp"
+                        app:srcCompat="@drawable/codeinput0" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
