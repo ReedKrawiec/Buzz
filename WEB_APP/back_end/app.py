@@ -24,6 +24,10 @@ def handle_message(message):
 def index():
     return app.send_static_file("index.html")
 
+@app.route("/privacy")
+def privacy():
+    return app.send_static_file("privacypolicy.html")
+
 @app.route("/pair/<cid>")
 def register_connection(cid):  
     if cid in connections:
